@@ -16,53 +16,24 @@
 			background-color: rgba(240, 255, 240, 0.3);
 		}
 	</style>
-	<script>
-	//자바스크립트일때
+	<script type="text/javascript">
 		function loginCheck() {
-			let id = document.querySelector("#id");//창입니다
-			let pw = document.querySelector("#pw");//input창 입니다
+			let id = document.querySelector("#id");//input 창입니다.
+			let pw = document.querySelector("#pw");//input 창입니다.
 			let checkItems = [ id, pw ];
-			//alert(id + " / " + pw + " / " + checkItems);
-			
-			
-			
-			
-			
+			alert(id.value + "" + pw.value);
+			alert(checkItems[0].value + " " + checkItems[1].value);
 			let flag = checkItems.every(function(item) {
 				if (item.value === null || item.value === "") {
-					//alert(item.parentNode.parentNode.childNodes[1].innerHTML + "를 다시 입력해주세요");
-					//alert(item.parentNode.parentNode.querySelector("label").innerHTML + "를 다시 입력해주세요");
-					alert(item.parentNode.previousElementSibling.innerHTML + "를 다시 입력해주세요");
+					alert(item.parentNode.querySelector("label").innerHTML);
 					item.focus();
 				}
-				return item.value !== "";
+				return item.value == "";
 			});
 
 			if (flag == true) {
-				//alert("로그인합니다");
+				alert("로그인합니다");
 				//writeForm.submit();
-				//가상form 만들기
-				let form = document.createElement("form");
-				form.setAttribute("action", "./login.sik");
-				form.setAttribute("method", "post");
-				
-				let idField = document.createElement("input");
-				idField.setAttribute("type","hidden");
-				idField.setAttribute("name","id");
-				idField.setAttribute("value",id.value);
-				
-				let pwField = document.createElement("input");
-				pwField.setAttribute("type", "hidden");
-				pwField.setAttribute("name", "pw");
-				pwField.setAttribute("value", pw.value);
-				
-				form.appendChild(idField);
-				form.appendChild(pwField);
-				
-				document.body.appendChild(form);
-				form.submit();
-				
-				
 			}
 		}
 	</script>

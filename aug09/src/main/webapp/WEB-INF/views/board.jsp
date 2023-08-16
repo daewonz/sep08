@@ -70,6 +70,7 @@
 			let name = $(this).children("td").eq(2).html();
 			let date = $(this).children("td").eq(3).html();
 			let read = Number($(this).children("td").eq(4).html()) + 1;
+			let ip = $(this).children("td").eq(5).html();
 			let comment =  $(this).children("td").eq(1).children(".bg-secondary").text().length+1;
 			if(comment > 0){title = title.slice(0, -comment);}
 			$.ajax({
@@ -85,7 +86,7 @@
 					
 					$(".detail-name").html(name);
 					$(".detail-date").text(date);
-					$(".detail-read").text(read);
+					$(".detail-read").text(ip + " 조회수 " + read);
 					$(".detail-content").html(data.content);
 					$("#exampleModal").modal("show");
 				},
@@ -105,19 +106,21 @@
                		<thead>
                		<tr class="row">
                			<th class="col-1">번호</th>
-               			<th class="col-6">제목</th>
+               			<th class="col-5">제목</th>
                			<th class="col-2">글쓴이</th>
                			<th class="col-2">날짜</th>
                			<th class="col-1">읽음</th>
+               			<th class="col-1">아이피</th>
                		</tr>
                		</thead>
                		<tbody><c:forEach items="${list }" var="row">
                		<tr class="row detail">
                			<td class="col-1">${row.bno}</td>
-               			<td class="col-6 title">${row.btitle}<c:if test="${row.commentcount ne 0 }">&nbsp;<span class="badge bg-secondary">${row.commentcount}</span></c:if></td>
+               			<td class="col-5 title">${row.btitle}<c:if test="${row.commentcount ne 0 }">&nbsp;<span class="badge bg-secondary">${row.commentcount}</span></c:if></td>
                			<td class="col-2">${row.m_name}</td>
                			<td class="col-2">${row.bdate}</td>
                			<td class="col-1">${row.blike}</td>
+               			<td class="col-1">${row.bip}</td>
                		</tr></c:forEach>
                		</tbody>
                </table>

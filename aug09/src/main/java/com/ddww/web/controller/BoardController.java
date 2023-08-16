@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.HTTP;
 import org.json.JSONObject;
@@ -45,6 +46,8 @@ public String detail(@RequestParam("bno") int bno) {
 	
 	json.put("content", boardDTO.getBcontent());
 	json.put("uuid", boardDTO.getUuid());
+	json.put("ip", boardDTO.getBip());
+	
 	//json.put("dto", boardDTO);
 	System.out.println(json.toString());
 	
@@ -56,13 +59,20 @@ public String write() {
 	return "write";
 }
 @PostMapping("/write")
-public String write(HttpServletRequest request) {
-	System.out.println(request.getParameter("title"));
-	System.out.println(request.getParameter("content"));
+public String write(HttpServletRequest request, HttpSession session) {
+	//로그인한 사용자만 들어올 수 있습니다.
 	BoardDTO dto = new BoardDTO();
-	dto.setBtitle(request.getParameter("title"));
-	dto.setBcontent(request.getParameter("content"));
-	dto.setM_id("porbi");
+	if(session.getAttribute("mid") != null) {
+		//HttpSession session = request.getSession();
+		System.out.println(request.getParameter("title"));
+		System.out.println(request.getParameter("content"));
+		dto.setBtitle(request.getParameter("title"));
+		dto.setBcontent(request.getParameter("content"));
+		dto.setM_id(String.valueOf(session.getAttribute("mid")));
+		System.out.println(dto.getBip());
+	}else {
+		return "redirect:/";
+	}
 	
 	int result;
 	result = boardService.write(dto);

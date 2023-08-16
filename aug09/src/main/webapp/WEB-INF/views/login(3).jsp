@@ -30,39 +30,16 @@
 			
 			let flag = checkItems.every(function(item) {
 				if (item.value === null || item.value === "") {
-					//alert(item.parentNode.parentNode.childNodes[1].innerHTML + "를 다시 입력해주세요");
-					//alert(item.parentNode.parentNode.querySelector("label").innerHTML + "를 다시 입력해주세요");
-					alert(item.parentNode.previousElementSibling.innerHTML + "를 다시 입력해주세요");
+					alert(item.parentNode.parentNode.childNodes[1].innerHTML);
+					//alert(item.parentNode.previousSibling("label").innerHTML + "를 다시 입력해주세요");
 					item.focus();
 				}
-				return item.value !== "";
+				return item.value == "";
 			});
 
 			if (flag == true) {
-				//alert("로그인합니다");
+				alert("로그인합니다");
 				//writeForm.submit();
-				//가상form 만들기
-				let form = document.createElement("form");
-				form.setAttribute("action", "./login.sik");
-				form.setAttribute("method", "post");
-				
-				let idField = document.createElement("input");
-				idField.setAttribute("type","hidden");
-				idField.setAttribute("name","id");
-				idField.setAttribute("value",id.value);
-				
-				let pwField = document.createElement("input");
-				pwField.setAttribute("type", "hidden");
-				pwField.setAttribute("name", "pw");
-				pwField.setAttribute("value", pw.value);
-				
-				form.appendChild(idField);
-				form.appendChild(pwField);
-				
-				document.body.appendChild(form);
-				form.submit();
-				
-				
 			}
 		}
 	</script>
@@ -76,14 +53,11 @@
                		<img alt="login" src="./img/login.png" width="250px;">
 				<div class="mb-3 row">
 					<label for="staticEmail" class="col-sm-3 col-form-label">I D</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
+					<div class="col-sm-8"><input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
 					</div>
 				</div>
-				<div class="mb-3 row">
-					<label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
-					<div class="col-sm-8">
-						<input type="password" class="form-control" id="pw" placeholder="암호를 입력하세요">
+				<div class="mb-3 row"><label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+					<div class="col-sm-8"><input type="password" class="form-control" id="pw" placeholder="암호를 입력하세요">
 					</div>
 				</div>
 				<div class="mb-3 row">
