@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,7 +27,7 @@ public class MultiBoardController {
 		
 		List<Map<String, Object>> list = mbService.list(board);
 		model.addAttribute("list", list);
-		System.out.println("멀티 보드의 값은" + list);
+		//System.out.println("멀티 보드의 값은" + list);
 		 
 		
 		return "multiboard";
@@ -53,8 +54,8 @@ public class MultiBoardController {
 			
 			map.put("mid", session.getAttribute("mid"));
 			int result = mbService.mbWrite(map);//이번에는 selectKey라는 기법입니다.
-			System.out.println(result);
-			System.out.println(map);
+			//System.out.println(result);
+			//System.out.println(map);
 			return "redirect:/mbdetail?mbno="+map.get("mb_no");
 		}else {
 			return "redirect:/login.sik?error=login";
@@ -65,8 +66,10 @@ public class MultiBoardController {
 		System.out.println(mbno);
 		Map<String, Object> detail = mbService.mbDetail(mbno);
 		model.addAttribute("detail", detail);
+		System.out.println(detail);
+		System.out.println(detail.get("mb_content"));
 		return "mbdetail";
 	}
-	
+
 	
 }

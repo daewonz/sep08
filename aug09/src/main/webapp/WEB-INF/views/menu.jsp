@@ -15,8 +15,7 @@
                         <li class="nav-item"><a class="nav-link" href="./notice">notice</a></li>
                         <li class="nav-item"><a class="nav-link" href="./about">about</a></li>
                 		<c:choose><c:when test="${sessionScope.mid ne null}">
-                		<li class="nav-item"><a class="nav-link" href="./myInfo@${sessionScope.mid}
-                		">myinfo</a></li>
+                		<li class="nav-item"><a class="nav-link" href="./myInfo@${sessionScope.mid}">myinfo</a></li>
                         <li class="nav-item"><a class="nav-link" onclick="logout()">logout</a></li>
                 		</c:when><c:otherwise><li class="nav-item"><a class="nav-link" href="./login.sik">login</a></li>                		
                 		</c:otherwise>                		

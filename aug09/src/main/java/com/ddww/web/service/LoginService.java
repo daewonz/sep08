@@ -16,6 +16,10 @@ public class LoginService {
 		// TODO Auto-generated method stub
 		return loginDAO.login(map);
 	}
+	public Map<String, Object> myInfo(String id) {
+		// TODO Auto-generated method stub
+		return loginDAO.myInfo(id);
+	}
 
 	
 	

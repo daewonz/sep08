@@ -22,7 +22,35 @@
  <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-               
+          			<table class="table table-dark table-hover table-striped">
+               		<thead>
+               		<tr class="row">
+               			<th class="col-1">번호</th>
+               			<th class="col-5">제목</th>
+               			<th class="col-2">글쓴이</th>
+               			<th class="col-2">날짜</th>
+
+               		</tr>
+               		</thead>
+               		
+               		<c:forEach items="${list }" var="list">
+               		
+               			
+               			<tr class="row detail">
+               			<td class="col-1">${list.nno}</td>
+               			<td class="col-5 title">${list.ntitle}</td>
+               			<td class="col-2">${list.m_no}</td>
+               			<td class="col-2">${list.ndate}</td>
+               		
+               		</tr>
+          
+               			<tbody>
+               		
+               		
+               	
+               		</c:forEach>
+               		</tbody>
+               </table>
                
             </div>
         </header>
