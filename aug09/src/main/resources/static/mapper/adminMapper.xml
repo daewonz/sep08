@@ -9,4 +9,15 @@
 	
 	</select>
 	
+	<select id="notice" resultType="Map">
+	select *
+	FROM notice order by nno desc
+	</select>
+	
+	 <insert id="noticeWrite" parameterType="Map">
+       insert into notice (ntitle, ncontent, m_no
+          <if test="upFile != null and upFile != ''">, norifile</if>)
+       values (#{title}, #{content}, #{mno}
+          <if test="upFile != null and upFile != ''">, #{upFile}</if>)
+    </insert>
 </mapper>
