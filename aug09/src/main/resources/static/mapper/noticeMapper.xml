@@ -4,6 +4,20 @@
 <select id="list" resultType="Map">
 SELECT nno, ntitle, ncontent, ndate, m_no, ndel, norifile, nrealfile
 FROM notice
+where ndel = 1
+order by nno DESC
+limit 0, 10
 </select>
-	
+
+<select id="detail" parameterType="Integer" resultType="Map">
+Select *
+From notice
+where nno = #{nno}
+</select>
+<select id="getOriFileName" parameterType="String" resultType="String">
+Select norifile
+from notice
+where nrealfile = #{fileName}
+
+</select>
 </mapper>

@@ -38,7 +38,6 @@ height: 50px;
 		<div class="main">
 			<div class="article">
 			 <h1>공지사항</h1>
-			 ${list }
 			 <table border="1" >
 			 	<tr>
 			 		<td>번호</td>

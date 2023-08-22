@@ -17,4 +17,14 @@ public List<Map<String, Object>> list() {
 	// TODO Auto-generated method stub
 	return noticeDAO.list();
 }
+
+public Map<String, Object> detail(int nno) {
+	// TODO Auto-generated method stub
+	return noticeDAO.detail(nno);
+}
+
+public String getOriFileName(String fileName) {
+	// TODO Auto-generated method stub
+	return noticeDAO.getOriFileName(fileName);
+}
 }
