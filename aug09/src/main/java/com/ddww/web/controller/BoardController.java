@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddww.web.dto.BoardDTO;
 import com.ddww.web.service.BoardService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class BoardController {
@@ -85,6 +87,18 @@ public String delete(BoardDTO dto) {
 	System.out.println(dto.getBno());
 	System.out.println(dto.getUuid());
 	return "redirect:/board";
+}
+@ResponseBody
+@PostMapping("/detail2")
+public String detail2(@RequestParam("bno")int bno) throws JsonProcessingException {
+	
+	BoardDTO detail = boardService.detail2(bno);
+	System.out.println("DTO가 보내준 값은 : "+detail);
+	ObjectMapper mapp = new ObjectMapper();
+	String json = mapp.writeValueAsString(detail);
+	//GSON << 구글이 만든 제이슨
+	System.out.println(json);
+	return json;
 }
 
 }

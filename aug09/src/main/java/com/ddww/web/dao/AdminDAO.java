@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 @Mapper
 public interface AdminDAO {
 
@@ -13,5 +15,11 @@ public interface AdminDAO {
 	List<Map<String, Object>> notice();
 
 	void noticeWrite(Map<String, Object> map);
+
+	String noticeDetail(int nno);
+
+	int noticeHide(int nno);
+
+	List<Map<String, Object>> setupBoardList();
 
 }

@@ -102,7 +102,7 @@
 				<div id="detailDate">${detail.mb_date}</div>
 			</div>
 			<div id="detailContent"><p>${detail.mb_content}<br></p></div>
-		<button class="btn btn-primary xi-view-list" onclick="location.href='./multiboard'">멀티보드로</button>
+		<button class="btn btn-primary xi-view-list" onclick="location.href='./multiboard?board=${param.board}'">멀티보드로</button>
 		</div>
 		</div>
 	</header>

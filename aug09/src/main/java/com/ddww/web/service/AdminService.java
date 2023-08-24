@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ddww.web.dao.AdminDAO;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Service
 public class AdminService {
@@ -25,6 +26,21 @@ public List<Map<String, Object>> notice() {
 
 public void noticeWrite(Map<String, Object> map) {
 	 adminDAO.noticeWrite(map);
+	
+}
+
+public String noticeDetail(int nno) {
+	// TODO Auto-generated method stub
+	return adminDAO.noticeDetail(nno);
+}
+
+public int noticeHide(int nno) {
+	// TODO Auto-generated method stub
+	return adminDAO.noticeHide(nno);
+}
+
+public List<Map<String, Object>> setupBoardList() {
+	return adminDAO.setupBoardList();
 	
 }
 }

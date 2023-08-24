@@ -28,5 +28,10 @@ public class MultiBoardService {
 		// TODO Auto-generated method stub
 		return mbDAO.mbDetail(mbno);
 	}
+
+	public List<Map<String, Object>> boardList() {
+		// TODO Auto-generated method stub
+		return mbDAO.boardList();
+	}
 	
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="menu">
+
+			<div class="menu-item" onclick="url('main')"><i class="xi-home-o xi-2x"></i>홈</div>
 			<div class="menu-item" onclick="url('multiBoard')"><i class="xi-layout xi-2x"></i>게시판 관리</div>
 			<div class="menu-item" onclick="url('post')"><i class="xi-document xi-2x"></i>게시글 관리</div>
 			<div class="menu-item" onclick="url('member')"><i class="xi-profile xi-2x"></i>회원 관리</div>

@@ -50,6 +50,9 @@
  <!-- Masthead-->
         <header class="masthead">
             <div class="container">
+            <c:forEach items="${boardList }" var="l">
+            <a href="${l.b_url }">${l.b_catename }</a>
+            </c:forEach>
                <h1>멀티 보드</h1>
               
                
@@ -70,8 +73,8 @@
                		<c:forEach items="${list }" var="list">
                		
                			
-               		<tr class="row detail" onclick="location.href='./mbdetail?mbno=${list.mb_no}'">
-               			<td class="col-1">${list.mb_no}</td>
+               		<tr class="row detail" onclick="location.href='./mbdetail?mbno=${list.mb_no}&board=${param.board }'">
+               			<td class="col-1">${list.rowNum}</td>
                			<td class="col-5 title">${list.mb_title}<c:if test="${row.commentcount ne 0 }">&nbsp;<span class="badge bg-secondary">${row.commentcount}</span></c:if></td>
                			<td class="col-2">${list.m_name}</td>
                			<td class="col-2">${list.mb_date}</td>
@@ -89,7 +92,7 @@
                		</c:when>
                		<c:otherwise>
                		<h1>게시판에 글이 없습니다.</h1>
-              
+              		
                		</c:otherwise>
                		</c:choose>
                

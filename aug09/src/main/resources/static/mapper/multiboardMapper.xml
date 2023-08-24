@@ -3,10 +3,14 @@
 <mapper namespace="com.ddww.web.dao.MultiBoardDAO">
 
 <select id="list" parameterType="Integer" resultType="Map">
-		SELECT *
-		FROM mbboardview
-		WHERE mb_board = #{board}
-		LIMIT 0, 10
+	  SELECT *, (SELECT COUNT(*) FROM mbboardview WHERE mb_board =#{board})AS COUNT
+   FROM (SELECT CAST(@ROWNUM :=@ROWNUM+1 AS UNSIGNED) AS rowNum, m.*
+	FROM mbboardview m, (SELECT @ROWNUM:=0) AS R
+	WHERE m.mb_board =#{board}
+	ORDER BY m.mb_no ASC) mm
+	ORDER BY mm.mb_no desc
+	LIMIT 0,10 
+   
 
 </select>
 <select id="mbDetail" parameterType="Integer" resultType="Map">
@@ -27,4 +31,8 @@ WHERE mb_no = #{mbno}
 	 </selectKey>
 	 
 </insert>
+<select id="boardList" resultType="Map">
+	SELECT *
+	FROM setupboard ORDER BY b_no ASC
+</select>
 </mapper>
