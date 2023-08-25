@@ -43,4 +43,19 @@ public List<Map<String, Object>> setupBoardList() {
 	return adminDAO.setupBoardList();
 	
 }
+
+public int multiBoardInsert(Map<String, String> map) {
+	// TODO Auto-generated method stub
+	return adminDAO.multiBoardInsert(map);
+}
+
+public List<Map<String, Object>> memberList() {
+	// TODO Auto-generated method stub
+	return adminDAO.memberList();
+}
+
+public int gradeChange(Map<String, Object> map) {
+	// TODO Auto-generated method stub
+	return adminDAO.gradeChange(map);
+}
 }

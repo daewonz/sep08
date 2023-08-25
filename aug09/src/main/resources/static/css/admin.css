@@ -53,7 +53,7 @@ overflow: hidden;
 	width: calc(100% - 50px);
 	
 	height: 100vh;
-	background-color : gray;
+	background-color : silver;
 	float: right;
 }
 .article{

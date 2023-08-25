@@ -66,6 +66,90 @@
 			}
 		}
 	</script>
+	<script type="text/javascript">
+	//쿠키만들기
+	$(function(){
+			//쿠키 값 가져오기
+			let userID = getCookie("userID");//아이디
+			let setCookieY = getCookie("setCookie");//Y
+			
+			//쿠키 검사 -> 쿠키가 있다면 해당 쿠키에서 id값 가져와서 id칸에 붙여넣기
+			if(setCookieY == 'Y'){
+				$("#saveID").prop("checked", true);
+				$("#id").val(userID);
+			}else{
+				$("#saveID").prop("checked", false);
+			}
+			
+			
+		$("#login").click(function(){
+			
+			
+			//아이디 패스워드 검사하기
+			let id = $("#id").val();
+			let pw = $("#pw").val();
+			
+			if(id == ''|| id.length < 4){
+				alert("올바른 아이디를 입력하세요");
+				$("#id").focus();
+				return false;
+			}if(pw == ''|| pw.length < 4){
+				alert("올바른 패스워드를 입력하세요");
+				$("#pw").focus();
+				return false;
+			}
+			
+			//alert("!");
+			if($("#saveID").is(":checked")){
+				alert("체크되어있습니다");
+				//setCookie("userID", 사용자가 입력한 아이디, 기간 ex : 7이면 7일 );
+				setCookie("userID", id, 7);
+				setCookie("setCookie", "Y", 7);
+			}else{
+				alert("체크 XXX");
+				//deleteCookie();
+				deleteCookie("userID");
+				deleteCookie("setCookie");
+				
+			}
+			
+		});
+		
+	});
+	
+	//setCookie()
+	function setCookie(cookieName, value, exdays){
+		let exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		let cookieValue = value + ((exdays == null) ? "" : ";expires=" + exdate.toGMTString());
+		//				  userID = poseidon;expires=2023-08-30
+		document.cookie = cookieName+"="+cookieValue;
+	}
+	
+	//deleteCookie()
+	function deleteCookie(cookieName){
+		let expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName+"= "+";expires="+expireDate.toGMTString();
+		
+	}
+	//getCookie()
+	function getCookie(cookieName){
+		let x, y;
+		let val = document.cookie.split(";");
+		for(let i =0; i < val.length; i++){
+			x = val[i].substr(0, val[i].indexOf("="));
+			y = val[i].substr(val[i].indexOf("=") +1); // 저 시작위치부터 끝까지
+			//x = x.replace(/^\s+|\s+$/g, '');
+			x = x.trim();
+			if(x == cookieName){
+				return y;
+			}
+			
+			
+		}
+	}
+	</script>
 </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -73,7 +157,7 @@
             <div class="container">
                <div class="rounded-3 login-form">
                		<h2>LOGIN</h2>
-               		<img alt="login" src="./img/login.png" width="250px;">
+               		<img alt="login" src="./img/login.jpg" width="250px;">
                		<c:if test="${param.error eq 'login' }">
                			<div class="mb-3 row">
                				<h2 style="color : blue">로그인하세요</h2>
@@ -93,7 +177,13 @@
 				</div>
 				<div class="mb-3 row">
 					<div class="col-sm-12">
-						<input type="button" id="login" class="btn btn-primary" value="login" onclick="loginCheck()">
+						<input type="checkbox" id="saveID">
+						<label for="saveID">아이디 저장</label>
+					</div>
+				</div>
+				<div class="mb-3 row">
+					<div class="col-sm-12">
+						<input type="button" id="login" class="btn btn-primary" value="login"> <!--  onclick="loginCheck()" -->
 						<input type="button" id="join" class="btn btn-info" value="가입하기">
 					</div>
 				</div>

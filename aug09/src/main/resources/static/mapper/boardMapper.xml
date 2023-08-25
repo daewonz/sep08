@@ -10,7 +10,7 @@ FROM(
          FROM board b) bb, (SELECT @ROWNUM:=0) AS R
    WHERE bdel=1
    ORDER BY bb.bno ASC
-   ) as ff join members m on ff.m_no = m.m_no 
+   ) as ff join members m on ff.m_no = m.m_no
 order by bno desc
 LIMIT 0, 10
 	</select>

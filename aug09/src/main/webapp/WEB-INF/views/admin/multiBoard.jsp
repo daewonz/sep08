@@ -38,10 +38,20 @@
 							</div>
 						</c:forEach>
 					</div>
+					<!--  새로 입력하는 form 입니다. -->
 					<div class="divTableFoot tableFootStyle">
 						<div class="divTableRow"></div>
 					</div>
 				</div>
+					<div class="dd">
+					<form action="./multiboard" method="post">
+					
+						<input type="text" name="mb_cate" required="required" placeholder="카테고리 번호 입력">
+						<input type="text" name="catename" required="required" placeholder="게시판 이름 입력">
+						<input type="text" name="comment" required="required" placeholder="참고를 남겨주세요">
+						<button type="submit">저장</button>
+					</form>
+					</div>
 			</div>
 		</div>
 	</div>

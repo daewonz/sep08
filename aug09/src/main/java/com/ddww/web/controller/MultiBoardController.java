@@ -33,7 +33,6 @@ public class MultiBoardController {
 		model.addAttribute("list", list);
 		//System.out.println("멀티 보드의 값은" + list);
 		 
-		
 		return "multiboard";
 	}
 	@GetMapping("/mbwrite")
