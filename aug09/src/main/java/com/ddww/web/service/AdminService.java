@@ -58,4 +58,19 @@ public int gradeChange(Map<String, Object> map) {
 	// TODO Auto-generated method stub
 	return adminDAO.gradeChange(map);
 }
+
+public List<Map<String, Object>> post(Map<String, Object> map) {
+	// TODO Auto-generated method stub
+	return adminDAO.post(map);
+}
+
+public List<Map<String, Object>> boardList() {
+	// TODO Auto-generated method stub
+	return adminDAO.boardList();
+}
+
+public Map<String, Object> postDetail(int mbno) {
+	// TODO Auto-generated method stub
+	return adminDAO.postDetail(mbno);
+}
 }

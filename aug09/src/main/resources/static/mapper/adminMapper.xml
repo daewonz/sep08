@@ -9,47 +9,96 @@
 	where m_id = #{id} AND AES_DECRYPT(UNHEX(m_pw),'sik') = #{pw} AND m_grade > 5
 	]]>
 	</select>
-	
+
 	<select id="notice" resultType="Map">
-	select *
-	FROM notice order by nno desc
-	limit 0, 10
+		select *
+		FROM notice order by nno desc
+		limit 0, 10
+	</select>
+
+	<insert id="noticeWrite" parameterType="Map">
+		insert into notice (ntitle, ncontent, m_no
+		<if test="upfile != null and upFile != ''">, norifile, nrealfile</if>
+		)
+		values (#{title}, #{content}, #{mno}
+		<if test="upfile != null and upFile != ''">, #{upfile}, #{realFile}</if>
+		)
+	</insert>
+
+	<select id="noticeDetail" parameterType="Integer"
+		resultType="String">
+		SELECT ncontent FROM notice WHERE nno=#{nno}
+	</select>
+
+	<update id="noticeHide" parameterType="Integer">
+		UPDATE notice SET ndel = if(ndel = 1, 0, 1)
+		WHERE nno=#{nno}
+	</update>
+
+	<select id="setupBoardList" resultType="Map">
+		select *
+		from setupboard
+		order by b_no ASC
+	</select>
+	<insert id="multiBoardInsert" parameterType="Map">
+		INSERT INTO setupboard (b_catename, b_url, b_comment, mb_cate)
+		values(#{catename}, CONCAT('./multiboard?board=',#{mb_cate}),
+		#{comment}, #{mb_cate})
+	</insert>
+
+	<select id="memberList" resultType="Map">
+		SELECT m_no, m_id, m_name, m_joindate, m_addr, m_grade, m_birth, m_mbti,
+		m_gender
+		FROM members
+	</select>
+
+	<update id="gradeChange" parameterType="Map">
+		Update members
+		SET m_grade =#{grade}
+		WHERE m_no = #{mno}
+	</update>
+
+	<select id="post" parameterType="Map" resultType="Map">
+		SELECT mb.mb_no, mb.mb_content, mb.mb_date, mb.mb_read, mb.mb_del,
+		mb.mb_board, mb.m_no, m.m_name, m.m_id, mb.mb_title,
+		s.mb_cate,
+		(
+		SELECT COUNT(*) FROM multiboard m JOIN members e ON m.m_no = e.m_no
+		<where>
+			<if test="cate gt 0">AND mb_board = #{cate}</if>
+			<choose>
+				<when test="searchN ==  'title'">AND m.mb_title LIKE CONCAT('%', #{searchV}, '%')</when>
+				<when test="searchN ==  'content'">AND m.mb_content LIKE CONCAT('%', #{searchV}, '%')</when>
+				<when test="searchN ==  'nick'">AND e.m_name LIKE CONCAT('%', #{searchV}, '%')</when>
+				<when test="searchN ==  'id'">AND e.m_id LIKE CONCAT('%', #{searchV}, '%')</when>
+			</choose>
+		</where>
+		) as count, s.b_catename
+		FROM (multiboard mb JOIN members m ON mb.m_no = m.m_no)
+		JOIN setupboard s ON mb.mb_board = s.mb_cate
+		<where>
+			<if test="cate gt 0">AND mb_board = #{cate}</if>
+			<choose>
+				<when test="searchN ==  'title'">AND mb_title LIKE CONCAT('%', #{searchV}, '%')
+				</when>
+				<when test="searchN ==  'content'">AND mb_content LIKE CONCAT('%', #{searchV}, '%')
+				</when>
+				<when test="searchN ==  'nick'">AND m.m_name LIKE CONCAT('%', #{searchV}, '%')
+				</when>
+				<when test="searchN ==  'id'">AND m.m_id LIKE CONCAT('%', #{searchV}, '%')</when>
+			</choose>
+		</where>
+		ORDER BY mb_no DESC;
+
+	</select>
+	<select id="boardList" resultType="Map">
+		select b_url, mb_cate, b_catename
+		from setupboard
 	</select>
 	
-	 <insert id="noticeWrite" parameterType="Map">
-       insert into notice (ntitle, ncontent, m_no
-          <if test="upfile != null and upFile != ''">, norifile, nrealfile</if>)
-       values (#{title}, #{content}, #{mno}
-          <if test="upfile != null and upFile != ''">, #{upfile}, #{realFile}</if>)
-    </insert>
-    
-       <select id="noticeDetail" parameterType="Integer" resultType="String">
-      SELECT ncontent FROM notice WHERE nno=#{nno}
-   </select>
-   
-   <update id="noticeHide" parameterType="Integer">
-      UPDATE notice SET ndel = if(ndel = 1, 0, 1)
-      WHERE nno=#{nno}
-   </update>
-    
-    <select id="setupBoardList" resultType="Map">
-    select *
-    from setupboard
-    order by b_no ASC
-    </select>
-    <insert id="multiBoardInsert" parameterType="Map">
-    INSERT INTO setupboard (b_catename, b_url, b_comment, mb_cate)
-    values(#{catename}, CONCAT('./multiboard?board=',#{mb_cate}), #{comment}, #{mb_cate})
-    </insert>
-    
-    <select id="memberList" resultType="Map">
-    SELECT m_no, m_id, m_name, m_joindate, m_addr, m_grade, m_birth, m_mbti, m_gender
-    FROM members
-    </select>
-    
-    <update id="gradeChange" parameterType="Map">
-    Update members
-    SET m_grade =#{grade}
-    WHERE m_no = #{mno}
-    </update>
+	<select id="postDetail" parameterType="Integer" resultType="Map">
+	SELECT *
+	FROM mbboardview
+	WHERE mb_no = #{mbno}
+	</select>
 </mapper>

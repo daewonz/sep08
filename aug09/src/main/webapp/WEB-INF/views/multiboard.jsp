@@ -79,7 +79,6 @@
                			<td class="col-2">${list.m_name}</td>
                			<td class="col-2">${list.mb_date}</td>
                			<td class="col-1">${list.mb_read}</td>
-               		
                		</tr>
           
                			<tbody>

@@ -49,7 +49,7 @@ tr:hover{
 .content-view{
 	width: calc(100% - 820px);
 	height: 400px;
-	background-color: gray;
+	background-color: beige;
 	float: right;
 }
 </style>
@@ -67,7 +67,7 @@ tr:hover{
         	 dataType: "json",
         	 success:function(data){
         		 //alert(data.content);
-        		 $(".content-view").html(data.content);
+        		 $(".content-view").html("<h3>"+data.content+"</h3>");	
         	 },
         	 error:function(data){
         		 alert("오류가 발생했습니다. 다시 시도하지 마십시오 : " + data);
