@@ -35,4 +35,9 @@ WHERE mb_no = #{mbno}
 	SELECT *
 	FROM setupboard ORDER BY b_no ASC
 </select>
+<select id="cateName" parameterType="Integer" resultType="Map">
+SELECT b_catename
+FROM setupboard
+WHERE mb_cate = #{board}
+</select>
 </mapper>

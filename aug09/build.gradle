@@ -40,6 +40,12 @@ dependencies {
    //implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
    // 이메일 보내기
    implementation 'org.apache.commons:commons-email:1.5'
+   // 문서화 하기 2023-08-30 파이선 프로그래밍
+implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+implementation 'io.springfox:springfox-swagger2:2.9.2'
+
+   
+   
 }
 
 tasks.named('test') {

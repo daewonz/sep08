@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddww.web.dao.AnnonyBoardDAO">
+
+	
+	<select id="list" parameterType="Map" resultType="Map">
+	SELECT *
+	FROM annonyboard
+	ORDER BY abno desc 
+	LIMIT #{pageIndex} , #{pageSize}
+	</select>
+	<insert id="write">
+	INSERT INTO annonyboard (abtitle, abwrite, abcontent) VALUES(#{title},#{abwrite},#{content})
+	
+	</insert>
+	<select id="count" resultType="Integer">
+	SELECT COUNT(*)
+	FROM annonyboard
+	</select>
+</mapper>

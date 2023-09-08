@@ -32,7 +32,11 @@ public class MultiBoardController {
 		List<Map<String, Object>> list = mbService.list(board);
 		model.addAttribute("list", list);
 		//System.out.println("멀티 보드의 값은" + list);
-		 
+		
+		
+		//게시판 이름 가져오기 2023-09-06
+		Map<String, Object> catename = mbService.cateName(board);
+		model.addAttribute("catename", catename);
 		return "multiboard";
 	}
 	@GetMapping("/mbwrite")

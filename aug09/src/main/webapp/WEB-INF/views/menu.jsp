@@ -10,6 +10,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-md-0">
+                    
+                        <li class="nav-item"><a class="nav-link" href="./annonyboard?page=1">연습용익명게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="./board">board</a></li>
                         <li class="nav-item"><a class="nav-link" href="./multiboard?board=1">multi board</a></li>
                         <li class="nav-item"><a class="nav-link" href="./notice">notice</a></li>

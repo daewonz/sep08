@@ -1,6 +1,7 @@
 package com.ddww.web.util;
 
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,11 +109,9 @@ public class Util {
 		      return getCurrentRequest().getServletContext().getRealPath("/upload");
 		   }
 	
-	  // String emailAddr = "malrang248@outlook.kr";// 보내는 사람
-	  // String passwd = "mal99rang!@";// 메일의 암호를 넣어주세요.
 	   public void htmlMailSender(Map<String, Object> map) throws EmailException {
-		   String emailAddr = "korea96440@outlook.com";
-		   String passwd = "1QAZXSW23EDC";	//메일의 암호를 넣어주세요
+		   String emailAddr = "";
+		   String passwd = "";	//메일의 암호를 넣어주세요
 		      String name = "스프링에서 보냄";// 보내는 사람 이름
 		      String hostname = "smtp.office365.com";// smtp 주소
 		      int port = 587;// 포트가 뭔지 모르면 검색하셔야 합니다.
@@ -153,5 +152,5 @@ public class Util {
 		      String result = mail.send(); // 메일 보내기
 		      System.out.println("메일 보내기 : " + result);
 		   }
-	
+
 }

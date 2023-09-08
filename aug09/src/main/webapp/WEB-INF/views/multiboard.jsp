@@ -53,7 +53,7 @@
             <c:forEach items="${boardList }" var="l">
             <a href="${l.b_url }">${l.b_catename }</a>
             </c:forEach>
-               <h1>멀티 보드</h1>
+               <h1>${catename.b_catename}</h1>
               
                
                <c:choose>

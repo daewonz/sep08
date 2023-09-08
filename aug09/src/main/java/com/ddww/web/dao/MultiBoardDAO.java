@@ -16,4 +16,6 @@ public interface MultiBoardDAO {
 
 	List<Map<String, Object>> boardList();
 
+	Map<String, Object> cateName(int board);
+
 }
